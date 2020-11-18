@@ -10,8 +10,7 @@ const Navbar = () => {
             </div>
             <ul>
                 <li><a href="#">Usuários</a></li>
-                <li><a href="#">Financeiro</a></li>
-                <li><a href="#">Fornecedores</a></li>
+                <li><a href="#finance">Financeiro</a></li>                
             </ul>
         </nav>
     );

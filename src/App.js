@@ -22,6 +22,7 @@ import UsersInfo from '../src/components/Users/UsersInfo';
 import Intention from '../src/components/Users/Intention';
 import Budget from "../src/components/Users/Budget";
 import Themes from "../src/components/Users/Themes";
+import Finance from "../src/components/Finance/Finance";
 
 
 
@@ -32,6 +33,7 @@ export default class App extends Component {
     intencao: [],
     colors: ["#e2645a", "#86d9e2", "#84b8e2"],
     orcamento: [],
+    faturamento: []
   };
 
   componentDidMount() {
@@ -49,15 +51,20 @@ export default class App extends Component {
         axios.get(
           "https://dash-lejour.firebaseio.com/-MMNWsryMW51m6_zqiBN.json"
         ),
+        axios.get("https://dash-lejour.firebaseio.com/-MMRzwZah_ydOoxtLdb3.json"),
       ])
-      .then(axios.spread((cadastrosRes, data01Res, intencaoRes, orcamentoRes) =>{        
-        this.setState({
-          cadastros: cadastrosRes.data,
-          data01: data01Res.data,
-          intencao: intencaoRes.data,
-          orcamento: orcamentoRes.data
+      .then(
+        axios.spread((cadastrosRes, data01Res, intencaoRes, orcamentoRes, faturamentoRes) => {
+          this.setState({
+            cadastros: cadastrosRes.data,
+            data01: data01Res.data,
+            intencao: intencaoRes.data,
+            orcamento: orcamentoRes.data,
+            faturamento: faturamentoRes.data
+          });
         })
-      } )).catch(err => console.log(err));
+      )
+      .catch((err) => console.log(err));
   }
 
   render() {
@@ -110,7 +117,10 @@ export default class App extends Component {
                   fill="#8884d8"
                 >
                   {this.state.data01.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={this.state.colors[index]} />
+                    <Cell
+                      key={`cell-${index}`}
+                      fill={this.state.colors[index]}
+                    />
                   ))}
                 </Pie>
                 <Legend layout="vertical" align="left" verticalAlign="middle" />
@@ -128,13 +138,38 @@ export default class App extends Component {
                 <Tooltip />
                 <Bar dataKey="budget" fill="#84b8e2">
                   {this.state.orcamento.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={this.state.colors[index]} />
+                    <Cell
+                      key={`cell-${index}`}
+                      fill={this.state.colors[index]}
+                    />
                   ))}
                   <LabelList dataKey="budget" position="top" offset="10" />
                 </Bar>
               </BarChart>
             </ResponsiveContainer>
           </Budget>
+        </Layout>
+        <Layout>
+          <Finance>
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart
+                width={730}
+                height={250}
+                data={this.state.faturamento}
+                margin={{ top: 15, right: 40, left: 40, bottom: 25 }}
+              >
+                <XAxis dataKey="periodo" />
+                <YAxis />
+                <Tooltip />
+                <Line
+                  type="monotone"
+                  dataKey="monthIncome"
+                  stroke="#86d9e2"
+                  strokeWidth="2"
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </Finance>
         </Layout>
       </div>
     );
