@@ -23,6 +23,7 @@ import Intention from '../src/components/Users/Intention';
 import Budget from "../src/components/Users/Budget";
 import Themes from "../src/components/Users/Themes";
 import Finance from "../src/components/Finance/Finance";
+import Footer from "../src/components/Layout/Footer";
 
 
 
@@ -171,6 +172,7 @@ export default class App extends Component {
             </ResponsiveContainer>
           </Finance>
         </Layout>
+        <Footer />
       </div>
     );
   }
