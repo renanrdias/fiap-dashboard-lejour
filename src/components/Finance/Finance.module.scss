@@ -1,0 +1,26 @@
+//color pallette
+$colorSkin: #e2645a;
+$colorLightBlue: #84b8e2;
+$colorLightGreen: #86d9e2;
+
+//font-family
+$fontFamily: 'Merriweather', serif;
+
+.Finance {
+    grid-column: 1 / 3;
+    grid-row: 2 / 4;
+    border: lightgray .2px solid;
+    border-radius: 15px;
+    text-align: center;
+    color: $colorSkin;
+    padding-top: 10px;
+    font-family: $fontFamily;
+    box-shadow: 1px 1px 1px #888888;
+    transition: all .3s ease-in;
+    text-transform: uppercase;
+
+    &:hover {
+        box-shadow: 2px 1px 1px $colorLightBlue;
+        transform: translateY(-5px);
+    }
+}

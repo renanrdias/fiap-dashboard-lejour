@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap');
+//variables
+$fontSize: 1.2rem;
+
+//color pallette
+$colorSkin: #e2645a;
+$colorLightBlue: #84b8e2;
+$colorLightGreen: #86d9e2;
+
+//font-family
+$fontFamily: 'Merriweather', serif;
+
+
+
+.Layout {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: .4fr 1fr 1fr 1fr;
+    grid-gap: 30px;
+    height: 100vh;
+    max-width: 1440px;
+    margin: 0 auto;
+
+}
